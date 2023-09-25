@@ -29,8 +29,8 @@
               "src/favicon.ico",
               "src/assets"
             ],
-            "styles": [
-              "src/styles.scss"
+            "styles": ["node_modules/ngx-toastr/toastr.css",
+                          "src/styles.scss"
             ],
             "scripts": []
           },
@@ -100,5 +100,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "29ea9d1a-7f96-4904-8928-f487085d49a6"
   }
 }

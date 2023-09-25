@@ -1,0 +1,84 @@
+<section><div>
+    <button class="add" [routerLink]="['/post']">Add Product</button>
+  </div>
+<div><br></div></section>
+  <section>
+<div>
+  <div style=" padding: 10px; border: 1px solid #ccc; position: absolute;right: 10px;
+  top: 5px;">
+    <input placeholder="Product Name" [(ngModel)]="searchName" style="margin-right: 10px; padding: 5px;">
+    <button (click)="searchProduct()" style="padding: 5px; background-color: #007bff; color: #fff; border: none; cursor: pointer;">Search</button>
+  </div>
+  
+<table id="products">
+    <tr>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th style="text-align: center;">Action</th>
+    </tr>
+    <tbody>
+        <tr *ngFor="let product of getProducts" (click)="onRowClick(product._id)" >
+            <td>{{product.name}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.price}}</td>
+            <td class="action-buttons"><Button (click)="editProduct(product._id)">Edit</Button>&nbsp;&nbsp;<button (click)="deleteProduct(product._id)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+</div>
+
+</section>
+<div class="pagination">
+  
+  <button (click)="onPageChange(currentPage - 1)" *ngIf="currentPage > 1">Previous</button>
+
+  <!-- Page buttons -->
+  <button
+    *ngFor="let page of pages"
+    (click)="onPageChange(page)"
+    [class.active]="page === currentPage">
+    {{ page }}
+  </button>
+  <button (click)="onPageChange(currentPage + 1)" *ngIf="currentPage < numberofPages">Next</button>
+</div>
+<!-- <div class="pagination">
+  <button *ngFor="let page of pages" (click)="onPageChange(page)">{{ page }}</button>
+</div> -->
+
+<section *ngIf="getProductDetalisByid">
+    <div>
+      <h2>Selected Product Details</h2>
+      <table id="productdetails" style="border-collapse: collapse; width: 100%;">
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 11px; background-color: #f2f2f2;">Name</th>
+          <th style="border: 1px solid #ddd; padding: 11px; background-color: #f2f2f2;">Quantity</th>
+          <th style="border: 1px solid #ddd; padding: 11px; background-color: #f2f2f2;">Price</th>
+        </tr>
+        <tr>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{ getProductDetalisByid.name }}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{ getProductDetalisByid.quantity }}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{ getProductDetalisByid.price }}</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+
+  <section *ngIf="searchResults">
+    <div>
+      <h2>Searched Product</h2>
+      <table id="productdetails" style="border-collapse: collapse; width: 100%;">
+        <tr>
+          <th style="border: 1px solid #ddd; padding: 11px; background-color: #f2f2f2;">Name</th>
+          <th style="border: 1px solid #ddd; padding: 11px; background-color: #f2f2f2;">Quantity</th>
+          <th style="border: 1px solid #ddd; padding: 11px; background-color: #f2f2f2;">Price</th>
+        </tr>
+        <tr *ngFor="let result of searchResults">
+          <td style="border: 1px solid #ddd; padding: 8px;">{{ result.name }}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{ result.quantity }}</td>
+          <td style="border: 1px solid #ddd; padding: 8px;">{{ result.price }}</td>
+        </tr>
+      </table>
+    </div>
+  </section>
+  

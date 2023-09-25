@@ -1,0 +1,31 @@
+<h3 id="headiing">Add/Upadate Product</h3>
+<div style="padding-top: 20px; margin: 30px">
+    <form #userform="ngForm" (ngSubmit)="getUserFormData(userform.value)" novalidate>
+      <label for="fname">Name:</label>
+      <input type="text" [(ngModel)]="fname" ngModel id="fname" name="name" placeholder="Product Name.." required #nameInput="ngModel" >
+      <!-- Display validation messages -->
+      <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)">
+        <div *ngIf="nameInput.errors?.['required']" style="color:red;">Name is required.</div>
+      </div>
+      <br /><br />
+  
+      <label for="qty">Quantity:</label>
+      <input type="number" [(ngModel)]="quantity" ngModel name="quantity" id="qty" placeholder="Product Quantity.." required #quantityInput="ngModel" >
+      <!-- Display validation messages -->
+      <div *ngIf="quantityInput.invalid && (quantityInput.dirty || quantityInput.touched)">
+        <div *ngIf="quantityInput.errors?.['required']" style="color:red;">Quantity is required.</div>
+      </div>
+      <br /><br />
+  
+      <label for="price">Price:</label>
+      <input type="number" [(ngModel)]="price" ngModel name="price" id="price" placeholder="Product Price.." required #priceInput="ngModel">
+      <!-- Display validation messages -->
+      <div *ngIf="priceInput.invalid && (priceInput.dirty || priceInput.touched)">
+        <div *ngIf="priceInput.errors?.['required']" style="color:red;">Price is required.</div></div>
+        
+      <br /><br />
+  
+      <button type="submit" [disabled]="userform.invalid">Submit</button>
+    </form>
+  </div>
+  
